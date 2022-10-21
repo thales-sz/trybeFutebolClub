@@ -1,8 +1,7 @@
 import { ErrorRequestHandler as Erro, NextFunction, Request, Response } from 'express';
 
-const erroMiddleware: Erro = (err, req: Request, res: Response, next: NextFunction) => {
+const erroMiddleware: Erro = (err, _req: Request, res: Response, next: NextFunction) => {
   const { name, message, details } = err;
-  console.log(`name: ${name} + ${message}`);
 
   switch (name) {
     case 'ValidationError':
@@ -15,7 +14,6 @@ const erroMiddleware: Erro = (err, req: Request, res: Response, next: NextFuncti
       res.status(409).json({ message });
       break;
     default:
-      console.error(err);
       res.sendStatus(500);
   }
   next();

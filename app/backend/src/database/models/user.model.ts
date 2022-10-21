@@ -1,16 +1,15 @@
 import { Model, STRING, INTEGER } from 'sequelize';
 import db from '.';
-// import OtherModel from './OtherModel';
 
-class User extends Model {
-  id!: number;
-  email!: string;
-  username!: string;
-  password!: string;
-  role!: string;
+class UserModel extends Model {
+  declare id: number;
+  declare email: string;
+  declare username: string;
+  declare password: string;
+  declare role: string;
 }
 
-User.init({
+UserModel.init({
   id: {
     type: INTEGER,
     allowNull: false,
@@ -51,4 +50,4 @@ User.init({
 // User.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
 // User.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
 
-export default User;
+export default UserModel;

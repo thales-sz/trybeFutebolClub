@@ -1,4 +1,3 @@
-import console = require('console');
 import { NextFunction, Request, Response } from 'express';
 import Joi = require('joi');
 
@@ -10,8 +9,7 @@ const loginSchema = Joi.object({
 const validateBody = (req: Request, _res: Response, next: NextFunction): void => {
   const loginBody = req.body;
   try {
-    const { error } = loginSchema.valid(loginBody);
-    console.log(loginBody, error);
+    const { error } = loginSchema.validate(loginBody);
     if (error) {
       next(error);
     }
