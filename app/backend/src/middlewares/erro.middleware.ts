@@ -2,7 +2,7 @@ import { ErrorRequestHandler as Erro, NextFunction, Request, Response } from 'ex
 
 const erroMiddleware: Erro = (err, req: Request, res: Response, next: NextFunction) => {
   const { name, message, details } = err;
-  console.log(`name: ${name}`);
+  console.log(`name: ${name} + ${message}`);
 
   switch (name) {
     case 'ValidationError':

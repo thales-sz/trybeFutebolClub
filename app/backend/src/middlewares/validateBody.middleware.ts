@@ -1,4 +1,5 @@
-import { NextFunction, Request } from 'express';
+import console = require('console');
+import { NextFunction, Request, Response } from 'express';
 import Joi = require('joi');
 
 const loginSchema = Joi.object({
@@ -6,10 +7,11 @@ const loginSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
-const validateBody = (req: Request, res: Response, next: NextFunction) => {
+const validateBody = (req: Request, _res: Response, next: NextFunction): void => {
   const loginBody = req.body;
   try {
     const { error } = loginSchema.valid(loginBody);
+    console.log(loginBody, error);
     if (error) {
       next(error);
     }
