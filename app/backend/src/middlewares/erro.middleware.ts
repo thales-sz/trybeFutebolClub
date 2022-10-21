@@ -18,7 +18,6 @@ const erroMiddleware: Erro = (err, req: Request, res: Response, next: NextFuncti
       console.error(err);
       res.sendStatus(500);
   }
-
   next();
 };
 

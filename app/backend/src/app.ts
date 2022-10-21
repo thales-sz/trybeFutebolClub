@@ -1,5 +1,6 @@
 import * as express from 'express';
 import { StatusCodes } from 'http-status-codes';
+import erroMiddleware from './middlewares/erro.middleware';
 import loginRouter from './routes/login.routes';
 
 class App {
@@ -12,6 +13,7 @@ class App {
     this.routes();
     // Não remover essa rota
     this.app.get('/', (req, res) => res.json({ ok: true }));
+    this.app.use(erroMiddleware);
   }
 
   private config():void {
