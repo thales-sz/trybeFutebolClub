@@ -27,6 +27,9 @@ class App {
 
   private routes(): void {
     this.app.get('/ping', (req, res) => res.status(StatusCodes.OK).json({ message: 'pong' }));
+    this.app.post('/login', (req: express.Request, res: express.Response) => {
+      res.status(StatusCodes.OK).json({ message: 'login' });
+    });
   }
 
   public start(PORT: string | number):void {
