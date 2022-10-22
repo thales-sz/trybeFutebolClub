@@ -1,11 +1,11 @@
 import { ErrorRequestHandler as Erro, NextFunction, Request, Response } from 'express';
 
 const erroMiddleware: Erro = (err, _req: Request, res: Response, next: NextFunction) => {
-  const { name, message, details } = err;
+  const { name, message } = err;
 
   switch (name) {
     case 'ValidationError':
-      res.status(400).json({ message: details[0].message });
+      res.status(400).json({ message: 'All fields must be filled' });
       break;
     case 'NotFoundError':
       res.status(404).json({ message });

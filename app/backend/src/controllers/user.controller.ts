@@ -22,7 +22,7 @@ export default class UserController {
       if (!token) {
         return res
           .status(StatusCodes.UNAUTHORIZED)
-          .json({ message: 'Invalid username or password' });
+          .json({ message: 'Incorrect email or password' });
       }
       return res.status(StatusCodes.OK).json({ token });
     } catch (error) {
