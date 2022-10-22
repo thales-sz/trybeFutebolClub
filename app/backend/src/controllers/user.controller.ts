@@ -5,19 +5,21 @@ import UserService from '../domain/services/user.service';
 import { UserCredentials } from '../domain/entities/User';
 
 export default class UserController {
-  private _userService: UserService;
+  private userService: UserService;
 
-  constructor(userService: UserService) {
-    this._userService = userService;
+  constructor() {
+    this.userService = new UserService();
   }
 
-  public async login(req: Request, res: Response, next: NextFunction) {
+  public login = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const user = await this._userService.login(req.body as UserCredentials);
-      res.status(StatusCodes.OK).json(user);
+      log('Controller');
+      const user: UserCredentials = req.body;
+      const token = await this.userService.login(user);
+      return res.status(StatusCodes.OK).json({ token });
     } catch (error) {
-      log('Controller error');
+      log(`Controller error: ${error}`);
       next(error);
     }
-  }
+  };
 }

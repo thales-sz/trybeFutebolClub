@@ -5,6 +5,6 @@ export interface UserCredentials {
 
 export default interface IUser extends UserCredentials{
   id: number;
-  email: string;
+  username: string;
   role: string;
 }
