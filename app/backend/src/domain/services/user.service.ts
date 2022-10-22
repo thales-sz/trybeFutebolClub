@@ -1,6 +1,7 @@
-import { log } from 'console';
+import * as bcryptjs from 'bcryptjs';
 import UserModel from '../../database/models/user.model';
-import IUser, { UserCredentials } from '../entities/User';
+import { UserCredentials } from '../entities/User';
+import generateJWT from '../../utils/generateJWT';
 
 class UserService {
   private userModel;
@@ -9,13 +10,13 @@ class UserService {
     this.userModel = UserModel;
   }
 
-  public login = async (body: UserCredentials): Promise<IUser> => {
-    log('Service');
-    log(body.email);
+  public login = async (body: UserCredentials): Promise<string | boolean> => {
     const user = await this.userModel.findOne({
       where: { email: body.email },
     });
-    return user as IUser;
+    if (!user || !bcryptjs.compare(body.password, user.password)) return false;
+    const token = generateJWT(user);
+    return token;
   };
 }
 

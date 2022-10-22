@@ -24,10 +24,10 @@ describe('Testa App', () => {
       const httpResponseLogin = await chai
       .request(app)
       .post('/login')
-      .send({ email: 'email@trybe.com', password: 'umasenhaválida' });
+      .send({ email: 'admin@admin.com', password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW' });
 
       expect(httpResponseLogin.status).to.equal(StatusCodes.OK);
-      expect(httpResponseLogin.body).to.deep.equal({ token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjU0NTI3MTg5fQ.XS_9AA82iNoiVaASi0NtJpqOQ_gHSHhxrpIdigiT-fc" });
+      expect(httpResponseLogin.body.token.split('E2NjY0')[0]).to.equal("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOj");
     })
   })
 });
