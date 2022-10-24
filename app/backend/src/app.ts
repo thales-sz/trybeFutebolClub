@@ -1,5 +1,4 @@
 import * as express from 'express';
-import { StatusCodes } from 'http-status-codes';
 import erroMiddleware from './middlewares/erro.middleware';
 import loginRouter from './routes/login.routes';
 
@@ -29,7 +28,6 @@ class App {
   }
 
   private routes(): void {
-    this.app.get('/ping', (req, res) => res.status(StatusCodes.OK).json({ message: 'pong' }));
     this.app.use(loginRouter);
   }
 
