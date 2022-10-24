@@ -6,7 +6,7 @@ import validateBody from '../middlewares/validateBody.middleware';
 const router = express.Router();
 const userController = new UserController();
 
-router.post('/login', validateBody, userController.login);
-router.get('/login/validate', validateJWT, userController.userRole);
+router.post('/', validateBody, userController.login);
+router.get('/validate', validateJWT, userController.userRole);
 
 export default router;
