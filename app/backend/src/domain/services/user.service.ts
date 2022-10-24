@@ -4,7 +4,7 @@ import { UserCredentials } from '../entities/User';
 import generateJWT from '../../utils/generateJWT';
 
 class UserService {
-  private userModel;
+  private userModel: typeof UserModel;
 
   constructor() {
     this.userModel = UserModel;

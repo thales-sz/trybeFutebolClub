@@ -1,13 +1,12 @@
 import { Model, STRING, INTEGER } from 'sequelize';
 import db from '.';
-import MatchesModel from './match.model';
 
-class TeamsModel extends Model {
+class TeamModel extends Model {
   declare id: number;
   declare teamName: string;
 }
 
-TeamsModel.init({
+TeamModel.init({
   id: {
     type: INTEGER,
     allowNull: false,
@@ -21,11 +20,8 @@ TeamsModel.init({
 }, {
   underscored: true,
   sequelize: db,
-  modelName: 'Teams',
+  modelName: 'teams',
   timestamps: false,
 });
 
-MatchesModel.belongsTo(TeamsModel, { foreignKey: 'homeTeam', as: 'homeTeamId' });
-MatchesModel.belongsTo(TeamsModel, { foreignKey: 'awayTeam', as: 'awayTeamId' });
-
-export default TeamsModel;
+export default TeamModel;

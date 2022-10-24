@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { log } from 'console';
-import UserService from '../domain/services/user.service';
+import { UserService } from '../domain/services';
 import { UserCredentials } from '../domain/entities/User';
 
 export default class UserController {
