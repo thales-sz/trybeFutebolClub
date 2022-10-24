@@ -1,6 +1,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('teams', {
+    await queryInterface.createTable('matches', {
       id: {
         allowNull: false,
         type: Sequelize.INTEGER,
@@ -17,7 +17,7 @@ module.exports = {
           key: 'id',
         }
       },
-      home_teams_goals: {
+      home_team_goals: {
         allowNull: false,
         type: Sequelize.INTEGER
       },
@@ -32,7 +32,7 @@ module.exports = {
           key: 'id',
         }
       },
-      away_teams_goals: {
+      away_team_goals: {
         allowNull: false,
         type: Sequelize.INTEGER
       },

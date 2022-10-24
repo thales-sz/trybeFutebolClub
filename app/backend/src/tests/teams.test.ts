@@ -6,7 +6,6 @@ import chaiHttp = require('chai-http');
 
 import { app } from '../app';
 
-import { Response } from 'superagent';
 import { ITeam } from '../domain/entities/Team';
 import TeamModel from '../database/models/team.model';
 
@@ -29,7 +28,7 @@ describe('Testando rota /teams', () => {
 
     const httpResponse = await chai.request(app).get('/teams');
 
-    expect(httpResponse.status).to.be.equal(200);
+    expect(httpResponse.status).to.be.equal(StatusCodes.OK);
     expect(httpResponse.body[0]).to.haveOwnProperty('id');
   });
 
@@ -40,7 +39,7 @@ describe('Testando rota /teams', () => {
 
     const httpResponse = await chai.request(app).get('/teams/1');
 
-    expect(httpResponse.status).to.be.equal(200);
+    expect(httpResponse.status).to.be.equal(StatusCodes.OK);
     expect(httpResponse.body).to.haveOwnProperty('id');
   });
 
