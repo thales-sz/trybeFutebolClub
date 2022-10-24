@@ -1,4 +1,3 @@
-import * as bcryptjs from 'bcryptjs';
 import UserModel from '../../database/models/user.model';
 import { UserCredentials } from '../entities/User';
 import generateJWT from '../../utils/generateJWT';
@@ -12,9 +11,9 @@ class UserService {
 
   public login = async (body: UserCredentials): Promise<string | boolean> => {
     const user = await this.userModel.findOne({
-      where: { email: body.email },
+      where: { email: body.email, password: body.password },
     });
-    if (!user || !bcryptjs.compare(body.password, user.password)) return false;
+    if (!user) return false;
     const token = generateJWT(user);
     return token;
   };
