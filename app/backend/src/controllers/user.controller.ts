@@ -30,4 +30,9 @@ export default class UserController {
       next(error);
     }
   };
+
+  public userRole = (req: Request, res: Response) => {
+    const { role } = req.body.decoded;
+    return res.status(StatusCodes.OK).json({ role });
+  };
 }
