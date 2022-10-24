@@ -12,11 +12,12 @@ class UserService {
 
   public login = async (body: UserCredentials): Promise<string | boolean> => {
     const user = await this.userModel.findOne({
-      where: { email: body.email, password: body.password },
+      where: { email: body.email },
     });
-    if (!user || bcryptjs.compareSync(body.password, user.password)) return false;
-    const token = generateJWT(user);
-    return token;
+    if (user && bcryptjs.compareSync(body.password, user.password)) {
+      return generateJWT(user);
+    }
+    return false;
   };
 }
 
