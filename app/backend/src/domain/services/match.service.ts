@@ -1,5 +1,7 @@
+import { log } from 'console';
 import TeamModel from '../../database/models/team.model';
 import MatchModel from '../../database/models/match.model';
+import { IMatch } from '../entities/Match';
 
 export default class MatchService {
   private matchModel: typeof MatchModel;
@@ -8,13 +10,21 @@ export default class MatchService {
     this.matchModel = MatchModel;
   }
 
-  public getMatches = async () => {
+  public getMatches = async (): Promise<IMatch[]> => {
     const matches = await this.matchModel.findAll({
-      include: [{
-        model: TeamModel,
-        attributes: ['teamName'],
-      }],
+      include: [
+        { model: TeamModel,
+          as: 'teamHome',
+          attributes: {
+            exclude: ['id'],
+          } },
+        { model: TeamModel,
+          as: 'teamAway',
+          attributes: {
+            exclude: ['id'],
+          } },
+      ],
     });
-    return matches;
+    return matches as IMatch[];
   };
 }

@@ -6,7 +6,7 @@ export interface IMatch {
   homeTeamGoals: number;
   awayTeam: number;
   awayTeamGoals: number;
-  inProgress: boolean;
-  teamHome: ITeam;
-  teamAway: ITeam;
+  inProgress?: boolean;
+  teamHome?: ITeam;
+  teamAway?: ITeam;
 }

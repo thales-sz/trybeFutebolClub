@@ -1,7 +1,9 @@
 import loginRouter from './login.routes';
-import teamsRouter from './teams.routes';
+import teamRouter from './team.routes';
+import matchRouter from './match.routes';
 
 export {
   loginRouter,
-  teamsRouter,
+  teamRouter,
+  matchRouter,
 };

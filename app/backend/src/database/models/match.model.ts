@@ -1,13 +1,13 @@
-import { Model, INTEGER } from 'sequelize';
+import { BOOLEAN, Model, INTEGER } from 'sequelize';
 import db from '.';
 import TeamModel from './team.model';
 
 class MatchModel extends Model {
   declare id: number;
-  declare homeTeam: string;
-  declare homeTeamGoals: string;
-  declare awayTeam: string;
-  declare awayTeamGoals: string;
+  declare homeTeam: number;
+  declare homeTeamGoals: number;
+  declare awayTeam: number;
+  declare awayTeamGoals: number;
 }
 
 MatchModel.init({
@@ -35,7 +35,7 @@ MatchModel.init({
   },
   inProgress: {
     allowNull: false,
-    type: INTEGER,
+    type: BOOLEAN,
   },
 }, {
   underscored: true,
@@ -44,7 +44,10 @@ MatchModel.init({
   timestamps: false,
 });
 
-MatchModel.belongsTo(TeamModel, { foreignKey: 'homeTeam', as: 'homeTeamId' });
-MatchModel.belongsTo(TeamModel, { foreignKey: 'awayTeam', as: 'awayTeamId' });
+MatchModel.belongsTo(TeamModel, { foreignKey: 'homeTeam', as: 'teamHome' });
+MatchModel.belongsTo(TeamModel, { foreignKey: 'awayTeam', as: 'teamAway' });
+
+TeamModel.hasMany(MatchModel, { foreignKey: 'homeTeam', as: 'teamHome' });
+TeamModel.hasMany(MatchModel, { foreignKey: 'awayTeam', as: 'teamAway' });
 
 export default MatchModel;
