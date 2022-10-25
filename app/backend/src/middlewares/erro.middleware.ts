@@ -14,7 +14,7 @@ const erroMiddleware: Erro = (err, _req: Request, res: Response, next: NextFunct
       res.status(409).json({ message });
       break;
     default:
-      res.sendStatus(500);
+      res.status(500).json({ message });
   }
   next();
 };

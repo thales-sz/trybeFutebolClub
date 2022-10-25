@@ -1,3 +1,4 @@
+import { log } from 'console';
 import TeamModel from '../../database/models/team.model';
 import MatchModel from '../../database/models/match.model';
 import { IMatch } from '../entities/Match';
@@ -44,5 +45,13 @@ export default class MatchService {
       ],
     });
     return matches as IMatch[];
+  };
+
+  public createMatch = async (body: IMatch): Promise<IMatch> => {
+    log('chegou na service');
+    const newMatch = await this.matchModel.create({
+      ...body,
+    });
+    return newMatch as IMatch;
   };
 }

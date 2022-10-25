@@ -6,5 +6,6 @@ const router = express.Router();
 const matchController = new MatchController();
 
 router.get('/', matchController.getMatches);
+router.post('/', matchController.createMatch);
 
 export default router;

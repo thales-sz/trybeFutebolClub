@@ -29,4 +29,14 @@ export default class MatchController {
       next(error);
     }
   };
+
+  public createMatch = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { body } = req;
+      const newMatch = await this.matchService.createMatch(body);
+      return res.status(StatusCodes.CREATED).json(newMatch);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
