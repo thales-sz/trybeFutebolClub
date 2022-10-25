@@ -1,4 +1,3 @@
-import { log } from 'console';
 import TeamModel from '../../database/models/team.model';
 import { ITeam } from '../entities/Team';
 
@@ -11,7 +10,6 @@ class TeamService {
 
   public getTeams = async (): Promise<ITeam[]> => {
     const teams = await this.teamModel.findAll();
-    log(teams);
     return teams as ITeam[];
   };
 

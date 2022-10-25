@@ -1,17 +1,17 @@
 import { NextFunction, Request, Response } from 'express';
-import * as Joi from 'joi';
+import { StatusCodes } from 'http-status-codes';
+import { IMatch } from '../domain/entities/Match';
 
-const loginSchema = Joi.object({
-  email: Joi.string().email({ tlds: { allow: false } }).required(),
-  password: Joi.string().min(6).required(),
-});
-
-const validateBody = (req: Request, _res: Response, next: NextFunction): void => {
-  const loginBody = req.body;
+const validateMatch = (req: Request, res: Response, next: NextFunction): Response | undefined => {
+  const { homeTeam, awayTeam }: IMatch = req.body;
   try {
-    const { error } = loginSchema.validate(loginBody);
-    if (error) {
-      next(error);
+    if (homeTeam === awayTeam) {
+      return res.status(StatusCodes.UNPROCESSABLE_ENTITY)
+        .json({ message: 'It is not possible to create a match with two equal teams' });
+    }
+    if (homeTeam > 16 || homeTeam <= 0 || awayTeam <= 0 || awayTeam > 16) {
+      return res.status(StatusCodes.NOT_FOUND)
+        .json({ message: 'There is no team with such id!' });
     }
     next();
   } catch (err) {
@@ -19,4 +19,4 @@ const validateBody = (req: Request, _res: Response, next: NextFunction): void =>
   }
 };
 
-export default validateBody;
+export default validateMatch;
