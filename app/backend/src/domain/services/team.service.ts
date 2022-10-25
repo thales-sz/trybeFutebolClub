@@ -14,6 +14,13 @@ class TeamService {
     log(teams);
     return teams as ITeam[];
   };
+
+  public getTeamById = async (id: number): Promise<ITeam> => {
+    const team = await this.teamModel.findOne({
+      where: { id },
+    });
+    return team as ITeam;
+  };
 }
 
 export default TeamService;
