@@ -52,4 +52,8 @@ export default class MatchService {
     });
     return newMatch as IMatch;
   };
+
+  public finishMatch = async (id: number): Promise<void> => {
+    await this.matchModel.update({ inProgress: false }, { where: { id } });
+  };
 }

@@ -39,4 +39,14 @@ export default class MatchController {
       next(error);
     }
   };
+
+  public finishMatch = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      await this.matchService.finishMatch(Number(id));
+      return res.status(StatusCodes.OK).json({ message: 'Finished' });
+    } catch (error) {
+      next(error);
+    }
+  };
 }
