@@ -1,10 +1,10 @@
 import * as express from 'express';
-import MatchController from '../controllers/match.controller';
+import { LeaderboardController } from '../controllers';
 
 const router = express.Router();
 
-const matchController = new MatchController();
+const leaderboardController = new LeaderboardController();
 
-router.get('/home', matchController.getMatches);
+router.get('/home', leaderboardController.getLeaderboard);
 
 export default router;
