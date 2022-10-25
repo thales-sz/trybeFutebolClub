@@ -1,4 +1,3 @@
-import { log } from 'console';
 import TeamModel from '../../database/models/team.model';
 import MatchModel from '../../database/models/match.model';
 import { IMatch } from '../entities/Match';
