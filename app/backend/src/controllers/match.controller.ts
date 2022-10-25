@@ -15,8 +15,14 @@ export default class MatchController {
     next: NextFunction,
   ): Promise<Response | undefined> => {
     try {
-      const matches = await this.matchService.getMatches();
-      return res.status(StatusCodes.OK).json(matches);
+      const { inProgress } = req.query;
+      if (!inProgress) {
+        const matches = await this.matchService.getMatches();
+        return res.status(StatusCodes.OK).json(matches);
+      }
+      const condition = (inProgress === 'true');
+      const filteredMatches = await this.matchService.getMatchesFilter(condition);
+      return res.status(StatusCodes.OK).json(filteredMatches);
     } catch (error) {
       console.log(error);
 

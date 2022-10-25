@@ -26,4 +26,23 @@ export default class MatchService {
     });
     return matches as IMatch[];
   };
+
+  public getMatchesFilter = async (inProgress: boolean): Promise<IMatch[]> => {
+    const matches = await this.matchModel.findAll({
+      where: { inProgress },
+      include: [
+        { model: TeamModel,
+          as: 'teamHome',
+          attributes: {
+            exclude: ['id'],
+          } },
+        { model: TeamModel,
+          as: 'teamAway',
+          attributes: {
+            exclude: ['id'],
+          } },
+      ],
+    });
+    return matches as IMatch[];
+  };
 }
