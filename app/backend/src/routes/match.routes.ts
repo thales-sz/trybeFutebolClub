@@ -9,6 +9,7 @@ const matchController = new MatchController();
 
 router.get('/', matchController.getMatches);
 router.post('/', validateMatch, validateJWT, matchController.createMatch);
+router.patch('/:id', matchController.updateMatch);
 router.patch('/:id/finish', matchController.finishMatch);
 
 export default router;

@@ -1,6 +1,6 @@
 import TeamModel from '../../database/models/team.model';
 import MatchModel from '../../database/models/match.model';
-import { IMatch } from '../entities/Match';
+import { IMatch, IMatchUpdate } from '../entities/Match';
 
 export default class MatchService {
   private matchModel: typeof MatchModel;
@@ -55,5 +55,9 @@ export default class MatchService {
 
   public finishMatch = async (id: number): Promise<void> => {
     await this.matchModel.update({ inProgress: false }, { where: { id } });
+  };
+
+  public updateMatch = async (body: IMatchUpdate, id: number): Promise<void> => {
+    await this.matchModel.update({ ...body }, { where: { id } });
   };
 }
