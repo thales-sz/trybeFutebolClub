@@ -54,8 +54,8 @@ export default class MatchController {
     try {
       const { body } = req;
       const { id } = req.params;
-      await this.matchService.updateMatch(body, Number(id));
-      return res.sendStatus(StatusCodes.OK);
+      const match = await this.matchService.updateMatch(body, Number(id));
+      return res.status(StatusCodes.OK).json(match);
     } catch (error) {
       next(error);
     }

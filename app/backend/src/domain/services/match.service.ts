@@ -57,7 +57,9 @@ export default class MatchService {
     await this.matchModel.update({ inProgress: false }, { where: { id } });
   };
 
-  public updateMatch = async (body: IMatchUpdate, id: number): Promise<void> => {
+  public updateMatch = async (body: IMatchUpdate, id: number) => {
     await this.matchModel.update({ ...body }, { where: { id } });
+    const match = await this.matchModel.findOne({ where: { id } });
+    return match;
   };
 }
