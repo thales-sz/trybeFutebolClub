@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { log } from 'console';
 import { UserService } from '../domain/services';
 import { UserCredentials } from '../domain/entities/User';
 
@@ -26,7 +25,6 @@ export default class UserController {
       }
       return res.status(StatusCodes.OK).json({ token });
     } catch (error) {
-      log(`Controller error: ${error}`);
       next(error);
     }
   };
