@@ -33,6 +33,7 @@ export default class LeaderboardController {
       next(error);
     }
   };
+<<<<<<< HEAD
 
   public getLeaderboard = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -44,4 +45,6 @@ export default class LeaderboardController {
       next(error);
     }
   };
+=======
+>>>>>>> 6d3cc8541f77e87ddda19b22250067421d1fc340
 }
