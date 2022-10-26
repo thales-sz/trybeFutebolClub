@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-import generateLeaderboard from '../utils/generateLeaderboard';
 import { MatchService, TeamService, LeaderboardService } from '../domain/services';
 
 export default class LeaderboardController {
@@ -16,8 +15,8 @@ export default class LeaderboardController {
   public getHomeLeaderboard = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const teams = await this.teamService.getTeams();
-      const matches = await this.matchService.getMatchesFilter(false);
-      const leaderboard = await this.leaderboardService.getHomeLeaderboard(teams, matches);
+      const finishedMatches = await this.matchService.getMatchesFilter(false);
+      const leaderboard = await this.leaderboardService.getHomeLeaderboard(teams, finishedMatches);
       return res.status(200).json(leaderboard);
     } catch (error) {
       next(error);
