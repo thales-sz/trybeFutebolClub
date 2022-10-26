@@ -24,8 +24,6 @@ export default class MatchController {
       const filteredMatches = await this.matchService.getMatchesFilter(condition);
       return res.status(StatusCodes.OK).json(filteredMatches);
     } catch (error) {
-      console.log(error);
-
       next(error);
     }
   };
