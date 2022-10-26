@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { MatchService, TeamService, LeaderboardService } from '../domain/services';
+import { MatchService, LeaderboardService, TeamService } from '../domain/services';
 
 export default class LeaderboardController {
   private matchService: MatchService;

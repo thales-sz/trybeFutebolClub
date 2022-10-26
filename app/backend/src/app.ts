@@ -1,6 +1,10 @@
 import * as express from 'express';
 import erroMiddleware from './middlewares/erro.middleware';
-import { teamRouter, loginRouter, matchRouter, leaderboardRouter } from './routes';
+import { teamRouter,
+  loginRouter,
+  matchRouter,
+  leaderboardRouter,
+} from './routes';
 
 class App {
   public app: express.Express;
