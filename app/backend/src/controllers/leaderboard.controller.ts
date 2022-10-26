@@ -22,4 +22,15 @@ export default class LeaderboardController {
       next(error);
     }
   };
+
+  public getAwayLeaderboard = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const teams = await this.teamService.getTeams();
+      const finishedMatches = await this.matchService.getMatchesFilter(false);
+      const leaderboard = await this.leaderboardService.getAwayLeaderboard(teams, finishedMatches);
+      return res.status(200).json(leaderboard);
+    } catch (error) {
+      next(error);
+    }
+  };
 }

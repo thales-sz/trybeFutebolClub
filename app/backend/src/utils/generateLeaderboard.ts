@@ -4,10 +4,17 @@ import { IMatch } from '../domain/entities/Match';
 
 type matchStatus = 'win' | 'loss' | 'draw';
 
-const getMatchWinner = (match: IMatch) => {
+const getMatchHomeWinner = (match: IMatch) => {
   const { homeTeamGoals, awayTeamGoals } = match;
   if (homeTeamGoals > awayTeamGoals) return 'win';
   if (homeTeamGoals < awayTeamGoals) return 'loss';
+  return 'draw';
+};
+
+const getMatchAwayWinner = (match: IMatch) => {
+  const { homeTeamGoals, awayTeamGoals } = match;
+  if (homeTeamGoals > awayTeamGoals) return 'loss';
+  if (homeTeamGoals < awayTeamGoals) return 'win';
   return 'draw';
 };
 
@@ -17,11 +24,11 @@ const getMatchPoints = (status: matchStatus) => {
   return 1;
 };
 
-const handleTeamPoints = (team: ITeam, matches: IMatch[]) => {
+const handleHomePoints = (team: ITeam, matches: IMatch[]) => {
   const currTeam = { ...objLeader };
   matches.forEach((match) => {
     if (team.id === match.homeTeam) {
-      const winOrLoss = getMatchWinner(match);
+      const winOrLoss = getMatchHomeWinner(match);
       currTeam.name = team.teamName;
       currTeam.totalPoints += getMatchPoints(winOrLoss);
       currTeam.totalGames += 1;
@@ -37,4 +44,27 @@ const handleTeamPoints = (team: ITeam, matches: IMatch[]) => {
   return currTeam;
 };
 
-export default handleTeamPoints;
+const handleAwayPoints = (team: ITeam, matches: IMatch[]) => {
+  const currTeam = { ...objLeader };
+  matches.forEach((match) => {
+    if (team.id === match.awayTeam) {
+      const winOrLoss = getMatchAwayWinner(match);
+      currTeam.name = team.teamName;
+      currTeam.totalPoints += getMatchPoints(winOrLoss);
+      currTeam.totalGames += 1;
+      currTeam.totalVictories += winOrLoss === 'win' ? 1 : 0;
+      currTeam.totalDraws += winOrLoss === 'draw' ? 1 : 0;
+      currTeam.totalLosses += winOrLoss === 'loss' ? 1 : 0;
+      currTeam.goalsFavor += match.awayTeamGoals;
+      currTeam.goalsOwn += match.homeTeamGoals;
+      currTeam.goalsBalance = currTeam.goalsFavor - currTeam.goalsOwn;
+      currTeam.efficiency = ((currTeam.totalPoints / (currTeam.totalGames * 3)) * 100).toFixed(2);
+    }
+  });
+  return currTeam;
+};
+
+export {
+  handleHomePoints,
+  handleAwayPoints,
+};
