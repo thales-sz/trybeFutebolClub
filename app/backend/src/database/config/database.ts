@@ -1,17 +1,17 @@
-import 'dotenv/config';
-import { Options } from 'sequelize';
+import sequelize = require('sequelize');
 
-const config: Options = {
-  username: process.env.DB_USER || 'root',
-  password: process.env.DB_PASS || '123456',
-  database: 'TRYBE_FUTEBOL_CLUBE',
-  host: process.env.DB_HOST || 'localhost',
-  port: Number(process.env.DB_PORT) || 3002,
-  dialect: 'mysql',
-  dialectOptions: {
-    timezone: 'Z',
+require('dotenv/config');
+
+const config: sequelize.Options = {
+  username: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE,
+  host: process.env.PGHOST,
+  port: Number(process.env.PGPORT),
+  dialect: 'postgres',
+  define: {
+    timestamps: true,
   },
-  logging: false,
-}
+};
 
 module.exports = config;
