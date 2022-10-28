@@ -22,8 +22,4 @@ Backend:
 
 ## Para visualização do projeto e verificar seu funcionamneto:
 
-Acesse: 
-
-```link
 [Trybe Futebol Club](https://trybefutebolclub.vercel.app/)
-```
