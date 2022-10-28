@@ -24,20 +24,6 @@ Backend:
 
 Acesse: 
 
-```bash
+```link
 https://trybefutebolclub.vercel.app/
-```
-
-### Executando Testes
-
-- Acesse o Backend da raiz do diretório:
-
-```bash
-cd app/backend/
-```
-
-- Para rodar os tests:
-
-```bash
-npm test
 ```
