@@ -23,7 +23,9 @@ Backend:
 ## Para visualização do projeto e verificar seu funcionamneto:
 
 Acesse: 
-```https://trybefutebolclub.vercel.app/
+
+```bash
+https://trybefutebolclub.vercel.app/
 ```
 
 ### Executando Testes
