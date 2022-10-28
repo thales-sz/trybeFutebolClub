@@ -2,7 +2,7 @@
 
 ## Resumo
 
-Se trata de uma aplicação fullstack de controle de partidas e tabela do futebol brasileiro. Pelo frontend você pode fazer requisições para a API criada
+Se trata de uma aplicação fullstack de controle de partidas e tabela do futebol brasileiro. Pelo frontend você pode fazer requisições para a API criada.
 
 Dentre elas: 
 - Acessar todas as partidas em andamento e finalizadas (Pode ser feito tbm um filtro para elas)
