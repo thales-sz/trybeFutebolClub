@@ -17,8 +17,7 @@ O frontend foi fornecido pela [Trybe](https://www.betrybe.com/).
 
 ## Técnologias usadas
 
-Backend:
-> NodeJS, ExpressJS, MySQL, Sequelize, TypeScript, JavaScript, JWT, BcryptJS, Joi, MySQL/Postgres
+> NodeJS, ExpressJS, Mocha, Jest, Http Status Codes, MySQL/Postgres, Sequelize, TypeScript, JWT, BcryptJS, Joi
 
 ## Para visualização do projeto e verificar seu funcionamneto:
 
