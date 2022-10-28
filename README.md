@@ -22,6 +22,11 @@ Backend:
 
 ## Para visualização do projeto e verificar seu funcionamneto:
 
+Acesse: 
+```bash
+npm test
+```
+
 ### Executando Testes
 
 - Acesse o Backend da raiz do diretório:
