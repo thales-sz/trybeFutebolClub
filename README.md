@@ -21,6 +21,6 @@ O frontend foi fornecido pela [Trybe](https://www.betrybe.com/).
 
 ## Para visualização do projeto e verificar seu funcionamneto:
 
-[Trybe Futebol Club](https://trybefutebolclub.vercel.app/)
+Clique aqui: [Trybe Futebol Club](https://trybefutebolclub.vercel.app/)
 
 O deploy do backend foi feito utilizando [Railway](https://railway.app/) e o frontend pelo [Vercel](https://vercel.com/)
